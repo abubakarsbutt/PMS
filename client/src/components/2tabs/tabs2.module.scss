@@ -1,0 +1,38 @@
+.container{
+    .tabs{
+        background: #676A6F;
+        border-radius: 3px;
+        padding: 4px 3px;
+        display: flex;
+        align-items: center;
+        .link{
+            width: 80px;
+            text-align: center;
+            text-decoration: none;
+            color: #ffffff;
+            padding: 3px 30px;
+            border-right: 1px solid white;
+            font-weight: 800;
+            font-size: 12px;
+            &:hover{
+                background-color: #ffffff;
+                color: #676A6F;
+                padding: 3px 30px;
+            }
+        }
+        .link1{
+            width: 80px;
+            text-align: center;
+            text-decoration: none;
+            color: #ffffff;
+            padding: 3px 30px;
+            font-weight: 800;
+            font-size: 12px;
+            &:hover{
+                background-color: #ffffff;
+                color: #676A6F;
+                padding: 3px 30px;
+            }
+        }
+    }
+}

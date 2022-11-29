@@ -1,0 +1,16 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    .display{
+        display: flex;
+        .data{
+            flex: 1;
+            .pagination{
+                position: absolute;
+                bottom: 15px;
+                width: calc(100vw - 365px);
+                padding-left: 25px;
+            }
+        }
+    }
+}

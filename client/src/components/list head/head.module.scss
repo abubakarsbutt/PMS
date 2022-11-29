@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    margin: 0 30px;
+    .para {
+        font-weight: 600;
+        font-size: 14px;
+        color: #676A6F;
+    }
+}

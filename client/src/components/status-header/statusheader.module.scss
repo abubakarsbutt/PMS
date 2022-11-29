@@ -1,0 +1,38 @@
+.container{
+    margin: 15px 30px 0;
+    table{
+        width: 100%;
+        tr{
+            .first{
+                background: #E9E7E7;
+                border-radius: 5px;
+                font-weight: 600;
+                font-size: 18px;
+                color: #000000;
+                width: 125px;
+                padding: 4px 0px;
+                height: 50px;
+            }
+            .second{
+                background: #E9E7E7;
+                border-radius: 5px;
+                font-weight: 600;
+                font-size: 18px;
+                color: #000000;
+                width: 150px;
+                padding: 4px 0px;
+                height: 50px;
+            }
+            .color{
+                background: #E9E7E7;
+                border-radius: 5px;
+                font-weight: 600;
+                font-size: 16px;
+                color: #000000;
+                width: 90px;
+                height: 50px;
+                text-align: center;
+            }
+        }
+    }
+}

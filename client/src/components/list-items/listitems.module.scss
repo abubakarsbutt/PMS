@@ -1,0 +1,50 @@
+.container{
+    // width: 100%;
+    display: flex;
+    margin: 3px 30px;
+    .first{
+        font-size: 12px;
+        font-weight: 500;
+        color: #000000;
+        border-radius: 5px;
+        width: 98px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 3px;
+        border: 1px solid #E9E7E7;
+    }
+    .second{
+        border: 1px solid #E9E7E7;
+        margin-right: 3px;
+        font-size: 12px;
+        font-weight: 500;
+        color: #000000;
+        border-radius: 5px;
+        width: 198px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .third{
+        margin-right: 3px;
+        font-size: 12px;
+        font-weight: 500;
+        border: 1px solid #E9E7E7;
+        color: black;
+        border-radius: 5px;
+        width: 81px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        .assignee{
+            background-color: rgb(235, 103, 38);
+            border-radius: 50%;
+            padding: 8px;
+        }
+    }
+}
