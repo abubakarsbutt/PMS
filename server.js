@@ -1,10 +1,11 @@
-const express = require("express");
-const projectList = require("./routes/projectList");
-const auth = require("./routes/auth");
-const mongoose = require("mongoose");
-const cors = require("cors");
+import express from "express";
+import projectList from "./routes/projectList.js";
+import auth from "./routes/auth.js";
+import mongoose from "mongoose";
+import cors from "cors";
+import dotenv from "dotenv";
 
-require("dotenv").config();
+dotenv.config();
 
 const corsOptions = {
   origin: "*",

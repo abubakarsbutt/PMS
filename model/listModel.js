@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const listModel = mongoose.Schema({
   project: String,
@@ -22,4 +22,4 @@ const listModel = mongoose.Schema({
   img: String,
 });
 
-module.exports = mongoose.model("List", listModel);
+export default mongoose.model("List", listModel);

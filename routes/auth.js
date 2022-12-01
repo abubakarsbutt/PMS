@@ -1,14 +1,14 @@
-const express = require("express");
+import express from "express";
 
-const { login } = require("../controller/loginController");
-const {
+import { login } from "../controller/loginController.js";
+import {
   inviteUser,
   getUser,
   updateUser,
   getAllUsers,
   getByNameOrEmail,
-} = require("../controller/userController");
-const ensureAuth = require("../middleware/ensureAuth");
+} from "../controller/userController.js";
+import ensureAuth from "../middleware/ensureAuth.js";
 
 const route = express();
 
@@ -19,4 +19,4 @@ route.put("/update-user", ensureAuth, updateUser);
 route.get("/all-users", getAllUsers);
 route.get("/user-by-name-email", getByNameOrEmail);
 
-module.exports = route;
+export default route;

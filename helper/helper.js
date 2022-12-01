@@ -8,4 +8,4 @@ const checkValidFileTypes = ({ base64, validFileTypes }) => {
   };
 };
 
-module.exports = checkValidFileTypes;
+export default checkValidFileTypes;

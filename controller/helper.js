@@ -879,4 +879,4 @@ const inviteTemplate = ({ username, token }) => {
 `;
 };
 
-module.exports = { inviteTemplate };
+export default inviteTemplate;

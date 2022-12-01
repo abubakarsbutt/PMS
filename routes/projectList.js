@@ -1,8 +1,8 @@
-const express = require("express");
-const projectList = require("../controller/projectsList");
+import express from "express";
+import projectList from "../controller/projectsList.js";
 
 const route = express();
 
 route.get("/", projectList);
 
-module.exports = route;
+export default route;

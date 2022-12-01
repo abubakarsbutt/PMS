@@ -1,4 +1,4 @@
-const listModel = require("../model/listModel");
+import listModel from "../model/listModel.js";
 
 const projectList = async (req, res) => {
   const {
@@ -47,4 +47,4 @@ const projectList = async (req, res) => {
   res.status(200).json({ List: newList });
 };
 
-module.exports = projectList;
+export default projectList;

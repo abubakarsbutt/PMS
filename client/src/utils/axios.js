@@ -47,7 +47,7 @@
 import axios from "axios";
 axios.defaults.baseURL = "http://localhost:3030/";
 axios.defaults.headers.Authorization =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzg1YWNkYzBjMmU3YThhNmFmZGY0ZWQiLCJyb2xlIjoiVXNlciIsImVtYWlsIjoibXVoYW1tYWRhcnlhbjM0QGdtYWlsLmNvbSIsImlhdCI6MTY2OTcwNDkyNH0.x4CS52V_Y6yeA7WqXz63tb6vBmUveyeOmAHg3V0Tzo8";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzgyNjY3YTE5MmVmY2QyNDhjZDk3NTEiLCJyb2xlIjoiQWRtaW4iLCJlbWFpbCI6Im11aGFtbWFkYXJ5YW4zNEBnbWFpbC5jb20iLCJ1c2VybmFtZSI6IkJhYmFyIEF6YW0iLCJpYXQiOjE2Njk1MzA3MzB9.YhWhGCu4SRo5XzWMP3R_j43tNKEw5mZRcM__ZUsD9jg";
 axios.interceptors.request.use(
   (req) => {
     // req.headers.Authorization =

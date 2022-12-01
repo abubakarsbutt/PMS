@@ -1,5 +1,5 @@
-const mailgun = require("mailgun-js");
-const dotenv = require("dotenv");
+import mailgun from "mailgun-js";
+import dotenv from "dotenv";
 dotenv.config();
 const mailGun = mailgun({
   domain: process.env.MAILGUN_DOMAIN,
@@ -19,4 +19,4 @@ const mailer = async ({ to, subject, html }) => {
   }
 };
 
-module.exports = mailer;
+export default mailer;

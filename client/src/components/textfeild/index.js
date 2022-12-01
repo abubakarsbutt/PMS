@@ -37,6 +37,7 @@ const Textfeild = () => {
             type="text"
             placeholder="Invite by email (multiple lines and CSV accepted)"
             size={55}
+            {...(register && register("newEmail"))}
           />
           <select
             {...(register && register("newRole"))}
