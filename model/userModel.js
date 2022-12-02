@@ -17,6 +17,20 @@ const userModel = mongoose.Schema({
     enum: ["Admin", "User"],
     default: "User",
   },
+  status: {
+    type: String,
+    enum: ["ACTIVE", "CLOSED"],
+    default: "ACTIVE",
+  },
+  lastLogin: {
+    type: Date,
+    // default: new Date(),
+    default: Date.now(),
+  },
+  settings: {
+    type: String,
+    default: "...",
+  },
   image: String,
 });
 

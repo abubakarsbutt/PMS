@@ -19,7 +19,8 @@ const MySetting = () => {
   const [search] = useSearchParams();
 
   useEffect(() => {
-    getUser({ setUser, token: search.get("token"), reset });
+    const token = search.get("token");
+    getUser({ setUser, token, reset });
   }, []);
   console.log(user);
 

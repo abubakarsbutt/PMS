@@ -6,25 +6,47 @@ import { getAllUsers } from "../../api-services/auth";
 
 const Items = () => {
   const [users, setUsers] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getAllUsers({ setUsers });
+    getAllUsers({ setUsers, setLoading });
   }, []);
-  console.log(users);
+  // console.log(users.users.forEach((user) => user.email));
+  // const allUsers = users.users;
+  // console.log(allUsers);
   return (
     <div className={style.container}>
-      <table>
-        <tbody>
-          <tr>
-            <th>NO.</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Account Status</th>
-            <th>LAST ACTIVE</th>
-            <th>SETTINGS</th>
-          </tr>
-          {itemData.map(
+      {loading ? (
+        <>Loading...</>
+      ) : (
+        <table>
+          <tbody>
+            <tr>
+              <th>NO.</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Account Status</th>
+              <th>LAST ACTIVE</th>
+              <th>SETTINGS</th>
+            </tr>
+            {users?.users?.map(
+              (
+                { username, email, role, status, lastLogin, settings },
+                index
+              ) => (
+                <tr>
+                  <td>{index + 1}</td>
+                  <td>{username}</td>
+                  <td>{email}</td>
+                  <td>{role}</td>
+                  <td className={style.color}>{status}</td>
+                  <td>{lastLogin.slice(0, 10)}</td>
+                  <td>{settings}</td>
+                </tr>
+              )
+            )}
+            {/* {itemData.map(
             ({ NO, name, email, role, status, ACTIVE, settings }) => (
               <tr>
                 <td>{NO}</td>
@@ -36,9 +58,10 @@ const Items = () => {
                 <td>{settings}</td>
               </tr>
             )
-          )}
-        </tbody>
-      </table>
+          )} */}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };

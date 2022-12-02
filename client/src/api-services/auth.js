@@ -42,11 +42,13 @@ export const getUser = async ({ setUser, token, reset }) => {
   const res = await apiRequest({
     type: "get",
     path: GET_USER_ROUTE,
-    config: {
-      headers: {
-        Authorization: token,
+    ...(token && {
+      config: {
+        headers: {
+          Authorization: token,
+        },
       },
-    },
+    }),
   });
   if (res.status === 200) {
     if (reset) {
@@ -62,7 +64,8 @@ export const getUser = async ({ setUser, token, reset }) => {
   // }
 };
 
-export const getAllUsers = async ({ setUsers }) => {
+export const getAllUsers = async ({ setUsers, setLoading }) => {
+  setLoading(true);
   const res = await apiRequest({
     type: "get",
     path: GET_ALL_USERS_ROUTE,
@@ -75,6 +78,7 @@ export const getAllUsers = async ({ setUsers }) => {
   // dispatch(setLogout());
   // router.push("/login");
   // }
+  setLoading(false);
 };
 
 export const updateUser = async ({ setUser, data }) => {

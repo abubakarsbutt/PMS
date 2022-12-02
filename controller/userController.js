@@ -53,7 +53,8 @@ export const getUser = async (req, res) => {
 
 export const updateUser = async (req, res) => {
   // const id = req.params.id;
-  const { newEmail, email, newUsername, newPassword, newImage } = req.body;
+  const { newEmail, email, newUsername, newPassword, newImage, newStatus } =
+    req.body;
   try {
     const hashedPass = await bcrypt.hash(newPassword, 10);
 
@@ -97,6 +98,7 @@ export const updateUser = async (req, res) => {
       username: newUsername,
       password: hashedPass,
       image: newImage,
+      status: newStatus,
     };
     const updatedUser = await userModel.findOneAndUpdate(
       { email: newEmail },

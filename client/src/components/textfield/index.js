@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { inviteUser, getByNameOrEmail } from "../../api-services/auth";
-import style from "./textfeild.module.scss";
+import style from "./textField.module.scss";
 import img from "../../assets/icons8-search.svg";
 
-const Textfeild = () => {
+const TextField = () => {
   const {
     register,
     setError,
@@ -18,17 +18,28 @@ const Textfeild = () => {
     // console.log(data);
     inviteUser({ data, setUser });
   };
+  const handleChange = (data, setUser) => {
+    // console.log(data);
+    getByNameOrEmail({ data, setUser });
+  };
 
   return (
     <div className={style.container}>
       <div className={style.left}>
         <img className={style.img} src={img} alt="" />
+        {/* <form> */}
         <input
+          onChange={handleChange}
           className={style.input}
-          type="text"
+          type={
+            "email"
+              ? { ...(register && register("email")) }
+              : "name" && { ...(register && register("username")) }
+          }
           placeholder="Search by name or email"
           size={60}
         />
+        {/* </form> */}
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={style.right}>
@@ -57,4 +68,4 @@ const Textfeild = () => {
   );
 };
 
-export default Textfeild;
+export default TextField;
