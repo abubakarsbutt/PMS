@@ -26,7 +26,8 @@ export const inviteUser = async ({ data }) => {
 export const login = async ({ data }) => {
   const res = await apiRequest({ type: "post", path: LOGIN_ROUTE, body: data });
   if (res.status === 200) {
-    createNotification("success", res?.data);
+    console.log(res?.headers?.authorization);
+    createNotification("success", res?.data?.msg);
 
     // dispatch(
     //   setUser({ user: res?.data?.user, token: res?.headers?.authorization })

@@ -1,5 +1,4 @@
 import express from "express";
-import projectList from "./routes/projectList.js";
 import auth from "./routes/auth.js";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -17,7 +16,6 @@ const app = express();
 app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use("/routes", projectList);
 app.use("/auth", auth);
 
 app.get("/", (req, res) => {

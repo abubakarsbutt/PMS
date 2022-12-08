@@ -25,6 +25,7 @@ const Members = () => {
             title2="MEMBERS"
             title3="WORKSPACE"
             title4="PROJECT"
+            title5="LOGIN"
           />
           <TextField />
           <Items />
