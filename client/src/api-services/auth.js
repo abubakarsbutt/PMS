@@ -10,6 +10,7 @@ import {
   GET_ALL_USERS_ROUTE,
   USER_BY_NAME_EMAIL,
 } from "../utils/endpoints";
+import { setToken } from "../store";
 // import { setFormError } from "helpers/hook-form-helper";
 
 export const inviteUser = async ({ data }) => {
@@ -23,11 +24,12 @@ export const inviteUser = async ({ data }) => {
   }
 };
 
-export const login = async ({ data }) => {
+export const login = async ({ data, dispatch, navigate }) => {
   const res = await apiRequest({ type: "post", path: LOGIN_ROUTE, body: data });
   if (res.status === 200) {
-    console.log(res?.headers?.authorization);
+    dispatch(setToken(res?.headers?.authorization));
     createNotification("success", res?.data?.msg);
+    navigate("/");
 
     // dispatch(
     //   setUser({ user: res?.data?.user, token: res?.headers?.authorization })
@@ -39,7 +41,7 @@ export const login = async ({ data }) => {
   // }
 };
 
-export const getUser = async ({ setUser, token, reset }) => {
+export const getUser = async ({ setUser, token, reset, dispatch }) => {
   const res = await apiRequest({
     type: "get",
     path: GET_USER_ROUTE,
@@ -55,6 +57,10 @@ export const getUser = async ({ setUser, token, reset }) => {
     if (reset) {
       removeKeys(res.data.user, ["__v", "_id"]);
     }
+    {
+      token && dispatch(setToken(token));
+    }
+
     setUser(res.data.user);
     reset(res.data.user);
     // dispatch(setUser({ user: res?.data }));

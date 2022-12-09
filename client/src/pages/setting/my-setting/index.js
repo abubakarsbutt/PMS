@@ -12,17 +12,21 @@ import style from "./mysetting.module.scss";
 import { getUser, updateUser } from "../../../api-services/auth";
 import { useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 
 const MySetting = () => {
   const [user, setUser] = useState("");
   const { register, handleSubmit, reset } = useForm({});
   const [search] = useSearchParams();
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const token = search.get("token");
-    getUser({ setUser, token, reset });
+
+    getUser({ setUser, token, reset, dispatch });
+    // console.log(token);
   }, []);
-  console.log(user);
 
   const onSave = (data, setUser) => {
     console.log(data);
@@ -79,15 +83,14 @@ const MySetting = () => {
                   />
                 </label>
               </div>
-
-              {/* <div>
-                {inputData.map(({ lable }) => (
-                  <Textarea lable={lable} />
-                ))}
-              </div> */}
               <div className={style.image}>
                 <Image title="Change Picture" img={img} />
-                <img className={style.img} src={img1} alt="" />
+                <img
+                  className={style.img}
+                  src={img1}
+                  alt=""
+                  {...(register && register("newImage"))}
+                />
               </div>
             </div>
             <div className={style.btn}>

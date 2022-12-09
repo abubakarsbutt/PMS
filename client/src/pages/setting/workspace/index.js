@@ -1,6 +1,7 @@
 import Sidebar from "../../../components/layout/sidebar";
 import Navbar from "../../../components/layout/navbar";
 import SettingTabs from "../../../components/settingtabs";
+import DetailImage from "../../../components/detail-page-image";
 import Image from "../../../components/image";
 
 import img1 from "../../../assets/Ellipse 11.svg";
@@ -24,7 +25,7 @@ const Workspace = () => {
           />
           <div className={style.img}>
             <Image title="Workspace Name joined" img={img1} />
-            <Image title="ADD SPACE" img={img2} />
+            <DetailImage title="ADD SPACE" img={img2} />
           </div>
         </div>
       </div>

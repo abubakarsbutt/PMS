@@ -2,6 +2,8 @@ import Button from "../../../components/button/index";
 import Navbar from "../../../components/layout/navbar";
 import Sidebar from "../../../components/layout/sidebar";
 import SettingTabs from "../../../components/settingtabs";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import style from "./login.scss";
 
@@ -9,10 +11,13 @@ import { useForm } from "react-hook-form";
 import { login } from "../../../api-services/auth";
 
 const MySetting = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { register, handleSubmit } = useForm({});
   const onLogin = (data) => {
     console.log(data);
-    login({ data });
+    login({ data, dispatch, navigate });
   };
 
   return (

@@ -18,10 +18,10 @@ const TextField = () => {
     // console.log(data);
     inviteUser({ data, setUser });
   };
-  const handleChange = (data, setUser) => {
-    // console.log(data);
-    getByNameOrEmail({ data, setUser });
-  };
+  // const handleChange = (data, setUser) => {
+  //   // console.log(data);
+  //   getByNameOrEmail({ data, setUser });
+  // };
 
   return (
     <div className={style.container}>
@@ -29,7 +29,7 @@ const TextField = () => {
         <img className={style.img} src={img} alt="" />
         {/* <form> */}
         <input
-          onChange={handleChange}
+          // onChange={handleChange}
           className={style.input}
           type={
             "email"
