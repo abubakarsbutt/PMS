@@ -8,7 +8,7 @@ import {
   INVITE_USER_ROUTE,
   UPDATE_USER_ROUTE,
   GET_ALL_USERS_ROUTE,
-  USER_BY_NAME_EMAIL,
+  SET_PASSWORD,
 } from "../utils/endpoints";
 import { setToken } from "../store";
 // import { setFormError } from "helpers/hook-form-helper";
@@ -41,37 +41,27 @@ export const login = async ({ data, dispatch, navigate }) => {
   // }
 };
 
-export const getUser = async ({ setUser, token, reset, dispatch }) => {
+export const getUser = async ({ setUser, reset, dispatch }) => {
   const res = await apiRequest({
     type: "get",
     path: GET_USER_ROUTE,
-    ...(token && {
-      config: {
-        headers: {
-          Authorization: token,
-        },
-      },
-    }),
   });
   if (res.status === 200) {
     if (reset) {
       removeKeys(res.data.user, ["__v", "_id"]);
     }
-    {
-      token && dispatch(setToken(token));
-    }
 
     setUser(res.data.user);
-    reset(res.data.user);
-    // dispatch(setUser({ user: res?.data }));
+    // reset(res.data.user)
+    const { email, username } = res.data.user;
+    reset({
+      newEmail: email,
+      newUsername: username,
+    });
   }
-  // else {
-  // dispatch(setLogout());
-  // router.push("/login");
-  // }
 };
 
-export const getAllUsers = async ({ setUsers, setLoading }) => {
+export const getAllUsers = async ({ setUsers, setLoading, setAllUsers }) => {
   setLoading(true);
   const res = await apiRequest({
     type: "get",
@@ -79,7 +69,8 @@ export const getAllUsers = async ({ setUsers, setLoading }) => {
   });
 
   if (res.status === 200) {
-    setUsers(res?.data);
+    setUsers(res?.data.users);
+    setAllUsers(res?.data.users);
   }
   // else {
   // dispatch(setLogout());
@@ -103,18 +94,17 @@ export const updateUser = async ({ setUser, data }) => {
   // }
 };
 
-export const getByNameOrEmail = async ({ data, setUser }) => {
+export const setPassword = async ({ data, navigate }) => {
   const res = await apiRequest({
-    type: "get",
-    path: USER_BY_NAME_EMAIL,
+    type: "put",
+    path: SET_PASSWORD,
     body: data,
   });
-  if (res.status === 200) {
-    setUser(res.data);
-    // dispatch(setUser({ user: res?.data }));
+  if (res.status === 201) {
+    navigate("/login");
   }
   // else {
   // dispatch(setLogout());
-  // router.push("/login");
+  // router.push("/");
   // }
 };

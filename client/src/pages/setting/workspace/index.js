@@ -21,7 +21,6 @@ const Workspace = () => {
             title2="MEMBERS"
             title3="WORKSPACE"
             title4="PROJECT"
-            title5="LOGIN"
           />
           <div className={style.img}>
             <Image title="Workspace Name joined" img={img1} />

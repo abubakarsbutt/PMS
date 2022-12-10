@@ -6,7 +6,7 @@ import {
   getUser,
   updateUser,
   getAllUsers,
-  getByNameOrEmail,
+  setPassword,
 } from "../controller/userController.js";
 import ensureAuth from "../middleware/ensureAuth.js";
 
@@ -15,8 +15,8 @@ const route = express();
 route.post("/login", login);
 route.post("/invite-user", ensureAuth, inviteUser);
 route.get("/get-user", ensureAuth, getUser);
+route.put("/set-password", ensureAuth, setPassword);
 route.put("/update-user", ensureAuth, updateUser);
 route.get("/all-users", getAllUsers);
-route.get("/user-by-name-email", getByNameOrEmail);
 
 export default route;

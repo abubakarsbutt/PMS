@@ -1,45 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 
-import { inviteUser, getByNameOrEmail } from "../../api-services/auth";
+import { inviteUser } from "../../../../api-services/auth";
 import style from "./textField.module.scss";
-import img from "../../assets/icons8-search.svg";
+import img from "../../../../assets/icons8-search.svg";
+import { setUser } from "../../../../store";
 
-const TextField = () => {
-  const {
-    register,
-    setError,
-    handleSubmit,
-    watch,
-    formState: { errors, isSubmitting },
-  } = useForm();
+const TextField = ({ setUsers, allUsers }) => {
+  const { register, handleSubmit } = useForm();
 
-  const onSubmit = (data, setUser) => {
-    // console.log(data);
+  const onSubmit = (data) => {
     inviteUser({ data, setUser });
   };
-  // const handleChange = (data, setUser) => {
-  //   // console.log(data);
-  //   getByNameOrEmail({ data, setUser });
-  // };
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    const filteredUsers = value
+      ? allUsers?.filter(
+          (user) =>
+            user?.username?.includes(value) || user?.email?.includes(value)
+        )
+      : allUsers;
+    setUsers(filteredUsers);
+  };
 
   return (
     <div className={style.container}>
       <div className={style.left}>
         <img className={style.img} src={img} alt="" />
-        {/* <form> */}
         <input
-          // onChange={handleChange}
+          onChange={handleChange}
           className={style.input}
-          type={
-            "email"
-              ? { ...(register && register("email")) }
-              : "name" && { ...(register && register("username")) }
-          }
+          // type={
+          //   "email"
+          //     ? { ...(register && register("email")) }
+          //     : "name" && { ...(register && register("username")) }
+          // }
           placeholder="Search by name or email"
           size={60}
         />
-        {/* </form> */}
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={style.right}>

@@ -45,6 +45,7 @@
 // export default axios;
 
 import axios from "axios";
+import createNotification from "../common/create-notification";
 axios.defaults.baseURL = "http://localhost:3030/";
 
 axios.interceptors.request.use(
@@ -61,6 +62,11 @@ axios.interceptors.response.use(
     return successRes;
   },
   (error) => {
+    createNotification(
+      "error",
+      error?.response?.data?.msg || "Something went wrong!"
+    );
+
     return Promise.reject(error);
   }
 );

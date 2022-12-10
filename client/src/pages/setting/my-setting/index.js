@@ -17,19 +17,14 @@ import { useDispatch } from "react-redux";
 const MySetting = () => {
   const [user, setUser] = useState("");
   const { register, handleSubmit, reset } = useForm({});
-  const [search] = useSearchParams();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const token = search.get("token");
-
-    getUser({ setUser, token, reset, dispatch });
-    // console.log(token);
+    getUser({ setUser, reset, dispatch });
   }, []);
 
   const onSave = (data, setUser) => {
-    console.log(data);
     updateUser({ data, setUser });
   };
 
@@ -44,7 +39,7 @@ const MySetting = () => {
             title2="MEMBERS"
             title3="WORKSPACE"
             title4="PROJECT"
-            title5="LOGIN"
+            // title5="LOGIN"
           />
           <form onSubmit={handleSubmit(onSave)}>
             <div className={style.input}>
@@ -53,7 +48,7 @@ const MySetting = () => {
                   USERNAME
                   <input
                     type="text"
-                    name="username"
+                    name="newUsername"
                     {...(register && register("newUsername"))}
                   />
                 </label>
@@ -61,8 +56,9 @@ const MySetting = () => {
                   EMAIL
                   <input
                     type="email"
-                    name="email"
-                    value={user.email}
+                    name="newEmail"
+                    disabled={true}
+                    // value={user.email}
                     {...(register && register("newEmail"))}
                   />
                 </label>
@@ -70,7 +66,7 @@ const MySetting = () => {
                   NEW PASSWORD
                   <input
                     type="password"
-                    name="password"
+                    name="newPassword"
                     {...(register && register("newPassword"))}
                   />
                 </label>
@@ -78,8 +74,8 @@ const MySetting = () => {
                   CONFIRM PASSWORD
                   <input
                     type="password"
-                    name="password"
-                    {...(register && register(" newPassword"))}
+                    name="confirmPassword"
+                    {...(register && register("confirmPassword"))}
                   />
                 </label>
               </div>
@@ -104,10 +100,3 @@ const MySetting = () => {
 };
 
 export default MySetting;
-
-// const inputData = [
-//   { lable: "USER NAME" },
-//   { lable: "EMAIL" },
-//   { lable: "NEW PASSWORD" },
-//   { lable: "CONFIRM PASSWORD" },
-// ];

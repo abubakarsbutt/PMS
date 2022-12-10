@@ -10,6 +10,7 @@ import Workload from "../pages/workload";
 import ProjectName from "../pages/project-name";
 import Status from "../pages/status";
 import List from "../pages/list";
+import SetPassword from "../pages/set-password";
 
 const Routing = () => {
   return (
@@ -26,6 +27,7 @@ const Routing = () => {
           <Route path="/projectname" element={<ProjectName />} />
           <Route path="/status" element={<Status />} />
           <Route path="/list" element={<List />} />
+          <Route path="/set-password" element={<SetPassword />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -4,12 +4,11 @@ import style from "./items.module.scss";
 
 import { getAllUsers } from "../../api-services/auth";
 
-const Items = () => {
-  const [users, setUsers] = useState("");
+const Items = ({ users, setUsers, setAllUsers }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getAllUsers({ setUsers, setLoading });
+    getAllUsers({ setUsers, setLoading, setAllUsers });
   }, []);
   // console.log(users.users.forEach((user) => user.email));
   // const allUsers = users.users;
@@ -30,7 +29,7 @@ const Items = () => {
               <th>LAST ACTIVE</th>
               <th>SETTINGS</th>
             </tr>
-            {users?.users?.map(
+            {users?.map(
               (
                 { username, email, role, status, lastLogin, settings },
                 index

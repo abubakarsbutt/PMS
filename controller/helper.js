@@ -355,7 +355,7 @@ const inviteTemplate = ({ username, token }) => {
                                       margin-bottom: 0;
                                     "
                                   >
-                                    <strong>Forgot your password?</strong>
+                                    <strong>Join PMS</strong>
                                   </h1>
                                 </td>
                               </tr>
@@ -528,7 +528,7 @@ const inviteTemplate = ({ username, token }) => {
                                 <td>
                                   <div align="center">
                                     <a
-                                      href="http://localhost:3000/setting?token=${token}"
+                                      href="http://localhost:3000/set-password?token=${token}"
                                       target="_blank"
                                       style="
                                         text-decoration: none;

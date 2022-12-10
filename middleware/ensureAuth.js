@@ -14,7 +14,7 @@ const ensureAuth = (req, res, next) => {
         (req.body.role = decoded.role),
         next();
     } catch (err) {
-      return res.status(401).json({ msg: "Session Expired!" });
+      return res.status(401).json({ msg: err.msg });
     }
   } else {
     return res.status(401).json({ msg: "Login Required!" });

@@ -18,9 +18,12 @@ const SettingTabs = (props) => {
         <Link className={style.link1} to="">
           {props.title4}
         </Link>
-        <Link className={style.link1} to="/login">
+        {/* <Link className={style.link1} to="/login">
           {props.title5}
-        </Link>
+        </Link> */}
+        {/* <Link className={style.link1} to="/erp-login">
+          {props.title5}
+        </Link> */}
       </div>
     </div>
   );

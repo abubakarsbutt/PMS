@@ -16,6 +16,11 @@ export const inviteUser = async (req, res) => {
     if (userExists) {
       return res.status(500).json({ msg: "User Already Exists" });
     }
+    if (!username) {
+      return res
+        .status(500)
+        .json({ msg: "Please Complete Your Profile First" });
+    }
 
     const newUser = await userModel.create({
       role: newRole,
@@ -27,7 +32,10 @@ export const inviteUser = async (req, res) => {
         role: newUser.role,
         email: newUser.email,
       },
-      process.env.JWT_KEY
+      process.env.JWT_KEY,
+      {
+        expiresIn: "1h",
+      }
     );
     await mailer({
       to: newEmail,
@@ -113,8 +121,27 @@ export const updateUser = async (req, res) => {
   }
 };
 
+export const setPassword = async (req, res) => {
+  try {
+    const { email, newPassword } = req.body;
+    if (!newPassword) {
+      return res.status(404).json({ msg: "Invalid Password!" });
+    }
+
+    const hashedPass = await bcrypt.hash(newPassword, 10);
+    const newUser = {
+      password: hashedPass,
+    };
+    const setUserPass = await userModel.findOneAndUpdate({ email }, newUser, {
+      new: true,
+    });
+    res.status(201).json({ user: setUserPass });
+  } catch (error) {
+    res.status(404).json({ msg: error.message });
+  }
+};
+
 export const getAllUsers = async (req, res) => {
-  // const { role } = req.body;
   try {
     const allUsers = await userModel.find();
     if (!allUsers) {
@@ -126,32 +153,10 @@ export const getAllUsers = async (req, res) => {
   }
 };
 
-export const getByNameOrEmail = async (req, res) => {
-  const { username } = req.body;
-  const { email } = req.body;
-  try {
-    if (req.body.email) {
-      const user = await userModel.findOne({ email });
-      if (!user) {
-        return res.status(404).json({ msg: "User not Found" });
-      }
-      res.status(200).json({ user });
-    } else {
-      const user = await userModel.findOne({ username });
-      if (!user) {
-        return res.status(404).json({ msg: "User not Found" });
-      }
-      res.status(200).json({ user });
-    }
-  } catch (error) {
-    res.status(400).json({ msg: error.message });
-  }
-};
-
 export default {
   inviteUser,
   getUser,
   updateUser,
   getAllUsers,
-  getByNameOrEmail,
+  setPassword,
 };

@@ -17,8 +17,8 @@ export const login = async (req, res) => {
   if (!validPass) {
     return res.status(404).send({ msg: "Invalid Password Entered!" });
   }
-  const max = 3 * 24 * 60 * 60;
-  // const max = 60000;
+  // const max = 3 * 24 * 60 * 60;
+  const max = 10 * 60;
   const token = jwt.sign(
     {
       _id: user._id,
@@ -26,8 +26,8 @@ export const login = async (req, res) => {
       email: user.email,
       username: user.username,
     },
-    process.env.JWT_KEY,
-    { expiresIn: max }
+    process.env.JWT_KEY
+    // { expiresIn: max }
   );
 
   return res
