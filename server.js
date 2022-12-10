@@ -3,6 +3,7 @@ import auth from "./routes/auth.js";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
+import workSpaceController from "./routes/workSpaceRoutes.js";
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use("/auth", auth);
+app.use("/", workSpaceController);
 
 app.get("/", (req, res) => {
   res.send("Holmes");

@@ -6,3 +6,6 @@ export const GET_ALL_USERS_ROUTE = "/auth/all-users";
 export const UPDATE_USER_ROUTE = "/auth/update-user";
 export const SET_PASSWORD = "/auth/set-password";
 export const USER_BY_NAME_EMAIL = "/auth/user-by-name-email";
+
+//workspace
+export const CREATE_WORKSPACE = "/create-workspace";

@@ -1,3 +1,5 @@
+import style from "./input.module.scss";
+
 const Input = ({
   min,
   max,
@@ -12,17 +14,18 @@ const Input = ({
   infoText,
   register,
   onChange,
-  isDisable,
+  disabled,
   className,
   iconClass,
   errorClass,
   inputClass,
   placeholder,
   errorMessage,
+  containerClass,
 }) => {
   return (
     <>
-      <div className="inputContainer">
+      <div className={`${style.inputContainer} ${containerClass}`}>
         {label && (
           <label
             style={{
@@ -35,23 +38,41 @@ const Input = ({
         <div style={{ position: "relative" }}>
           <input
             className={inputClass}
-            type={type || "text"}
-            placeholder={placeholder || ""}
-            name={name || ""}
-            min={min && min}
-            max={max && max}
-            value={value && value}
-            onChange={onChange && onChange}
-            readOnly={readOnly || false}
-            accept={accept && accept}
-            disabled={isDisable || false}
+            {...(min && { min })}
+            {...(max && { max })}
+            {...(type && { type })}
+            {...(name && { name })}
+            {...(value && { value })}
+            {...(accept && { accept })}
+            {...(onChange && { onChange })}
+            {...(readOnly && { readOnly })}
+            {...(disabled && { disabled })}
             {...(register && register(name))}
+            {...(placeholder && { placeholder })}
             // style={{
             //   border: errorMessage ? "2px solid #ff5050" : "2px solid #D5D5D5",
             //   color: "#000",
             // }}
           />
+          {icon && (
+            <img
+              className={`${style.icon} ${iconClass}`}
+              style={{ cursor: "pointer" }}
+              src={icon}
+              alt=""
+              width={28}
+              height={28}
+              onClick={onClick}
+            />
+          )}
         </div>
+        {errorMessage ? (
+          <span className={`${style.errorMessage} ${errorClass}`}>
+            {errorMessage}
+          </span>
+        ) : (
+          <span className={style.message}>{infoText}</span>
+        )}
       </div>
     </>
   );

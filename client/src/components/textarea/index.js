@@ -1,15 +1,20 @@
 import React from "react";
 import style from "./textarea.module.scss";
 
-const Textarea = (props) => {
+const Textarea = ({ register, label, name, type }) => {
   return (
     <div className={style.container}>
       <div className={style.left}>
         <label className={style.label} htmlFor="">
-          {props.lable}
+          {label}
         </label>
       </div>
-      <input className={style.input} type="name" name="email" />
+      <input
+        className={style.input}
+        type={type}
+        name={name}
+        {...(register && register(name))}
+      />
     </div>
   );
 };

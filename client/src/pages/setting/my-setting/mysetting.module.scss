@@ -23,6 +23,17 @@
         border-radius: 10px;
       }
     }
+    .inputContainer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+
+      label {
+        min-width: 300px;
+        margin-right: 50px;
+      }
+    }
   }
   .btn {
     position: fixed;

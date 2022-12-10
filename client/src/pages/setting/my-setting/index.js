@@ -13,6 +13,7 @@ import { getUser, updateUser } from "../../../api-services/auth";
 import { useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import Input from "../../../components/input";
 
 const MySetting = () => {
   const [user, setUser] = useState("");
@@ -43,41 +44,35 @@ const MySetting = () => {
           />
           <form onSubmit={handleSubmit(onSave)}>
             <div className={style.input}>
-              <div className="inputs">
-                <label>
-                  USERNAME
-                  <input
-                    type="text"
-                    name="newUsername"
-                    {...(register && register("newUsername"))}
-                  />
-                </label>
-                <label>
-                  EMAIL
-                  <input
-                    type="email"
-                    name="newEmail"
-                    disabled={true}
-                    // value={user.email}
-                    {...(register && register("newEmail"))}
-                  />
-                </label>
-                <label>
-                  NEW PASSWORD
-                  <input
-                    type="password"
-                    name="newPassword"
-                    {...(register && register("newPassword"))}
-                  />
-                </label>
-                <label>
-                  CONFIRM PASSWORD
-                  <input
-                    type="password"
-                    name="confirmPassword"
-                    {...(register && register("confirmPassword"))}
-                  />
-                </label>
+              <div>
+                <Input
+                  name="newUsername"
+                  label="USERNAME"
+                  register={register}
+                  containerClass={style.inputContainer}
+                />
+                <Input
+                  label="EMAIL"
+                  type="email"
+                  name="newEmail"
+                  disabled={true}
+                  register={register}
+                  containerClass={style.inputContainer}
+                />
+                <Input
+                  label="NEW PASSWORD"
+                  type="password"
+                  name="newPassword"
+                  register={register}
+                  containerClass={style.inputContainer}
+                />
+                <Input
+                  label="CONFIRM PASSWORD"
+                  type="password"
+                  name="confirmPassword"
+                  register={register}
+                  containerClass={style.inputContainer}
+                />
               </div>
               <div className={style.image}>
                 <Image title="Change Picture" img={img} />
